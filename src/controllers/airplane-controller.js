@@ -35,7 +35,40 @@ async function getAllAirplane(req, res) {
     }
 }
 
+async function getAirplaneById(req, res) {
+    try {
+        const airplane = await AirplaneService.getAirplaneById(req.params.id);
+        SuccessResponse.data = airplane;
+        return res
+            .status(StatusCodes.OK)
+            .json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+            .status(error.statusCode)
+            .json(ErrorResponse)
+    }
+}
+
+async function deleteAirplaneById(req, res) {
+    try {
+        const airplane = await AirplaneService.deleteAirplaneById(req.params.id);
+
+        SuccessResponse.data = airplane;
+        return res
+            .status(StatusCodes.OK)
+            .json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+            .status(error.statusCode)
+            .json(ErrorResponse)
+    }
+}
+
 module.exports = {
     createAirplane,
-    getAllAirplane
+    getAllAirplane,
+    getAirplaneById,
+    deleteAirplaneById
 }

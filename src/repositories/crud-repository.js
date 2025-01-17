@@ -1,4 +1,6 @@
+const { StatusCodes } = require('http-status-codes');
 const { Logger } = require('../config');
+const AppError = require('../utils/errors/app-error');
 
 class CrudRepository {
     constructor(model) {
@@ -16,11 +18,17 @@ class CrudRepository {
                 id: data
             }
         })
+        if(!response){
+            throw new AppError('The provided airplane is not available for deletion', StatusCodes.NOT_FOUND);
+        }
         return response;
     }
 
     async get(data) {
         const response = await this.model.findByPk(data);
+        if(!response){
+            throw new AppError('Airplane Not found with given id', StatusCodes.NOT_FOUND);
+        }
         return response;
     }
 
