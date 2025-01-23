@@ -7,9 +7,9 @@ const {CityMiddleware} = require('../../middlewares');
 const router = express.Router();
 
 router.post('/',CityMiddleware.validateCreateRequest,CityController.createCity);
-// router.get('/',AirplaneController.getAllAirplane);
+router.put('/:id',CityMiddleware.validateCreateRequest, CityController.updateCity);
 // router.get('/:id',AirplaneController.getAirplaneById);
-// router.delete('/:id',AirplaneController.deleteAirplaneById);
+router.delete('/:id',CityController.deleteCity);
 
 //create update , delete endpoints for city
 
