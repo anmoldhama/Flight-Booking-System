@@ -46,3 +46,9 @@ Lets take a look inside the `src` folder
  ```
  npm run dev
  ```
+
+ ```
+ add a foreign key constraints using
+
+
+ npx sequelize migration:generate --name update-city-airport-association
